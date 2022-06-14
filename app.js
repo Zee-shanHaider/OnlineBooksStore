@@ -11,7 +11,7 @@ const mongoose = require('mongoose');
 
 // const transport= nodemailer.createTransport(sendgrid({
 //         auth: {
-//                 api_key: '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',
+//                 api_key: '',
 //         }
 // }))
 
@@ -34,7 +34,7 @@ const app = express();
 
 const MongoDBStore = require('connect-mongodb-session')(session);
 
-const MongoDBURI = 'mongodb+srv://Zeeshan:bzumultan@cluster0.cx0ph.mongodb.net/ShopWithMongoose?retryWrites=true&w=majority';
+const MongoDBURI = '';
 
 const store = new MongoDBStore({
         uri: MongoDBURI,
