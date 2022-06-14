@@ -1,0 +1,30 @@
+<%- include('../includes/_header.ejs')  %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+<%- include('../includes/_navigation.ejs') %>
+<div class="grid">
+    
+</div>
+<main class="centered">
+    <h1>
+        <%= product.title%>
+    </h1>
+    <h1>
+        <%= product.author%>
+    </h1>
+    <div>
+        <img style="width: 50%;" src="/<%= product.imageURL%>" alt="<%=product.title%>">
+    </div>
+    <h2>
+       $<%=product.Price%>
+    </h2>
+    <p>
+        <b> Description: </b> <%= product.description%>
+    </p>
+    <% if(isAuthenticated){%>  
+    <%-include('../includes/add-to-Cart-form', {product: product})%>
+    <% } %>
+  
+
+</main>

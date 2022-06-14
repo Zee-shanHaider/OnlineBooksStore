@@ -1,0 +1,53 @@
+<%- include('../includes/_header2.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    <%- include('../includes/_navigation.ejs') %>
+    <div class="search">
+        <form class="find-form" action="/admin/adminSearch" method="POST">
+            <input type="text" name="book" id="book" placeholder="Search Book">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit" class="btn">Search</button>
+        </form>
+    </div>
+    <main>
+       
+        <% if (prods.length > 0) { %>
+            
+            <div class="grid">
+                <% for (let product of prods) { %>
+                    <article class="card product-item">
+                        <header class="card__header">
+                            <h1 class="product__title"><%= product.title %></h1>
+                        </header>
+                        <header class="product__title">
+                            <b> Author:  <%= product.author %> </b>
+                        </header>
+                        <div class="card__image">
+                            <img src="/<%= product.imageURL %>" alt="Loading Picture!">
+                        </div>
+                        <div class="card__content">
+                            <h2 class="product__price">$<%= product.Price %></h2>
+                            <p class="product__description"><%= product.description %></p>
+                        </div>
+                        <div class="card__actions">
+                            <a href="/admin/edit-product/<%=product._id%>?edit=true" class="btn">Edit</a> 
+                                <input type="hidden" value="<%=product._id%>" name="productId" id="productId">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <button class="btn" type="button" onclick="deleteProduct(this)">Delete</button>
+                            
+                        </div>
+                    </article>
+                <% } %>
+            </div>
+        <% } else { %>
+            <h1>No Products Found!</h1>
+        <% } %>
+    </main>
+    <script src="/js/admin.js"></script>
+
+</body>
+
+</html>
